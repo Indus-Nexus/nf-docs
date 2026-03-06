@@ -288,25 +288,29 @@ SYPM has **13 finished products**, **~19 unique raw materials**, **3 UOM categor
 
 ## Dependency Graph (Critical Path)
 
-```
-Week 1: Roles + UOMs + Users
-    |
-Week 2: Inventory Items + Warehouses + Opening Stock
-    |                          |
-Week 3: Products + BOMs       Week 4: Suppliers + Supplier Items
-    + Process Stages               + POs
-    |                          |
-Week 5: Customers + Sales Orders + FIRST LIVE PRODUCTION RUN
-    |
-Week 6: Full-scale Production + GRN + Procurement Loop
-    |
-Week 7: Dashboard + Alerts + Daily Rhythm
-    |
-Week 8: Lot Tracking + WIP + Quarantine + Traceability
-    |
-Week 9-10: Work Centres + Scheduling + Rework
-    |
-Week 11-12: Reports + Costing + Audit + Go-Live Decision
+```mermaid
+flowchart TD
+    W1["📋 Week 1\nRoles + UOMs + Users"]
+    W2["📦 Week 2\nInventory Items + Warehouses + Opening Stock"]
+    W3["🔧 Week 3\nProducts + BOMs + Process Stages"]
+    W4["🚚 Week 4\nSuppliers + Supplier Items + POs"]
+    W5["🏭 Week 5\nCustomers + Sales Orders\n⭐ FIRST LIVE PRODUCTION RUN"]
+    W6["⚙️ Week 6\nFull-scale Production + GRN + Procurement Loop"]
+    W7["📊 Week 7\nDashboard + Alerts + Daily Rhythm"]
+    W8["🔍 Week 8\nLot Tracking + WIP + Quarantine + Traceability"]
+    W910["🏗️ Weeks 9–10\nWork Centres + Scheduling + Rework"]
+    W1112["📈 Weeks 11–12\nReports + Costing + Audit + Go-Live Decision"]
+
+    W1 --> W2
+    W2 --> W3
+    W2 --> W4
+    W3 --> W5
+    W4 --> W5
+    W5 --> W6
+    W6 --> W7
+    W7 --> W8
+    W8 --> W910
+    W910 --> W1112
 ```
 
 **Note:** Weeks 3 and 4 can run in parallel (BOMs don't depend on suppliers; suppliers don't depend on BOMs). The critical dependency convergence is Week 5, where Sales Orders need both Products (Week 3) and Customers (Week 5 Mon), and Production needs BOMs (Week 3).
